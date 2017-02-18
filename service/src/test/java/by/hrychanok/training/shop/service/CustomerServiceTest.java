@@ -42,12 +42,13 @@ public class CustomerServiceTest {
 	private CustomerService customerService;
 	Customer customer;
 	List<Customer> customerList = new ArrayList();;
+	int count = 3;
 
 	@Before
 	public void createCustomer() {
 		customerService.deleteAll();
-		int count = 10;
-		int i = 777;
+
+		for (int i = 0; i < count; i++) {
 			Customer cTest = new Customer();
 			CustomerCredentials cCredentials = new CustomerCredentials();
 			cCredentials.setLogin(String.format("%stestUser", i));
@@ -67,12 +68,13 @@ public class CustomerServiceTest {
 			cTest.setZipCode("230020");
 			customer = customerService.registerCustomer(cTest, cCredentials);
 			customerList.add(customer);
+		}
 	}
 
 	@Test
 	public void getCustomer() {
 		Random random = new Random();
-		int randomIndex = random.nextInt(10);
+		int randomIndex = random.nextInt(count);
 		customer = customerList.get(randomIndex);
 		customer = (customerService.findOne(customer.getId()));
 	}
@@ -82,7 +84,7 @@ public class CustomerServiceTest {
 		String firstNameUpd = "testUserUpdateName";
 		String loginUpd = "testLoginUPDATE";
 		Random random = new Random();
-		int randomIndex = random.nextInt(10);
+		int randomIndex = random.nextInt(count);
 		customer = customerList.get(randomIndex);
 		customer.getCustomerCredentials().setLogin(loginUpd);
 		customer.setFirstName(firstNameUpd);
@@ -93,14 +95,14 @@ public class CustomerServiceTest {
 
 	@Test
 	public void getCustomerByCredentials() {
-		CustomerCredentials getCustomer = customerService.getCustomerByCredentials("3testUser", "testPassword");
+		CustomerCredentials getCustomer = customerService.getCustomerByCredentials("0testUser", "testPassword");
 		Assert.assertNotNull(getCustomer);
 	}
 
 	@Test
 	public void deleteCustomer() {
 		Random random = new Random();
-		int randomIndex = random.nextInt(10);
+		int randomIndex = random.nextInt(count);
 		customer = customerList.get(randomIndex);
 		customerService.delete(customer.getId());
 		Assert.assertNull(customerService.findOne(customer.getId()));
@@ -128,25 +130,6 @@ public class CustomerServiceTest {
 		Long count2 = (long) customerList.size();
 		System.out.println("count1 = " + count1 + " ,count2 = " + count2);
 		Assert.assertEquals(count1, count2);
-	}
-
-	@Test
-	public void findWithFilter() {
-
-		CustomerFilter cFilter = new CustomerFilter();
-		List<Customer> list = customerService.find(cFilter);
-		Assert.assertEquals(10, list.size());
-		int limit = 3;
-		cFilter.setLimit(limit);
-		int offset = 0;
-		cFilter.setOffset(offset);
-		list = customerService.find(cFilter);
-		Assert.assertEquals(limit, list.size());
-		cFilter.setLimit(null);
-		cFilter.setOffset(null);
-		cFilter.setSortOrder(true);
-		list = customerService.find(cFilter);
-		Assert.assertEquals(10, list.size());
 	}
 
 }

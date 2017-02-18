@@ -1,4 +1,4 @@
-package by.hrychanok.training.shop.service.configuration;
+package by.hrychanok.training.shop.storefront.config;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,6 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("by.hrychanok.training.shop")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("by.hrychanok.training.shop.repository")
 public class DataConfig {
@@ -32,8 +31,6 @@ public class DataConfig {
 	private static final String PROP_HIBERNATE_CURRENT_SESSION_CONTEXT_CLASS = "current_session_context_class";
 	private static final String PROP_HIBERNATE_enable_lazy_load_no_trans = "hibernate.enable_lazy_load_no_trans";
 	private static final String PROP_HIBERNATE_EJB_NAMING_STRATEGY = "hibernate.physical_naming_strategy";
-	private static final String PROPERTY_HIBERNATE_hibernate_hbm2ddl_auto = "create";
-
 	@Resource
 	private Environment env;
 
@@ -76,7 +73,6 @@ public class DataConfig {
 		properties.put(PROP_HIBERNATE_enable_lazy_load_no_trans,
 				env.getRequiredProperty(PROP_HIBERNATE_enable_lazy_load_no_trans));
 		properties.put(PROP_HIBERNATE_EJB_NAMING_STRATEGY, env.getRequiredProperty(PROP_HIBERNATE_EJB_NAMING_STRATEGY));
-		properties.put("hibernate.hbm2ddl.auto", PROPERTY_HIBERNATE_hibernate_hbm2ddl_auto);
 		return properties;
 	}
 

@@ -53,7 +53,7 @@ public class OrderServiceImpl extends BasicServiceImpl<Order, OrderRepository, L
 		transferFromCartToOrder(order, cartContent);
 		order.setStatus(StatusOrder.Pending);
 		List<OrderContent> orderContent = getOrderContentById(order.getId());
-		mail.sendOrderConfirmationMail(order);
+		//mail.sendOrderConfirmationMail(order);
 		LOGGER.debug(String.format("Order %s has been created", order.getId()));
 		return order;
 	}

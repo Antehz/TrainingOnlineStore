@@ -14,9 +14,7 @@ public interface CustomerService extends BasicService<Customer, Long> {
 
 	Customer registerCustomer(Customer customer, CustomerCredentials customerCredentials);
 
-	List<Customer> find(CustomerFilter filter);
-
-	Long count(CustomerFilter filter);
+	List<Customer> find(Filter filter);
 
 	Collection<? extends String> resolveRoles(Long id);
 
