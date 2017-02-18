@@ -5,7 +5,7 @@
 
 	<parent>
 		<groupId>by.hrychanok.training.shop</groupId>
-		<artifactId>parent-project</artifactId>
+		<artifactId>TrainingOnlineStore</artifactId>
 		<version>1.0.0</version>
 	</parent>
 

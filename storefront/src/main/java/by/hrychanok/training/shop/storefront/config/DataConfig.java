@@ -1,4 +1,4 @@
-package by.hrychanok.training.shop.service.configuration;
+package by.hrychanok.training.shop.storefront.config;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,6 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("by.hrychanok.training.shop")
 @PropertySource("classpath:application.properties")
 @EnableJpaRepositories("by.hrychanok.training.shop.repository")
 public class DataConfig {

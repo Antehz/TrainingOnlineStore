@@ -53,7 +53,7 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 		return customer.getCustomerCredentials();
 	}
 
-	@Override
+	/*@Override
 	public Customer registerCustomer(Customer customer, CustomerCredentials customerCredentials) {
 		boolean exist = checkExistUser(customerCredentials.getLogin(), customer.getEmail());
 		if (!exist) {
@@ -68,9 +68,9 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 					customerCredentials.getLogin(), customer.getEmail()));
 		}
 		return customer;
-	}
+	}*/
 
-	@Override
+/*	@Override
 	public List<Customer> find(CustomerFilter filter) {
 		List<Customer> listFiltered = repository.find(filter);
 		if (listFiltered.isEmpty()) {
@@ -94,7 +94,7 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 	@Override
 	public Long count(CustomerFilter filter) {
 		return repository.count(filter);
-	}
+	}*/
 
 	@Override
 	public Collection<? extends String> resolveRoles(Long id) {
@@ -137,5 +137,23 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 		}
 		return repository.count();
 
+	}
+
+	@Override
+	public List<Customer> find(CustomerFilter filter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Long count(CustomerFilter filter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Customer registerCustomer(Customer customer, CustomerCredentials customerCredentials) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
