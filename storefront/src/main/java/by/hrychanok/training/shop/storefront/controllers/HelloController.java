@@ -11,8 +11,6 @@ import by.hrychanok.training.shop.service.OrderService;
 @Controller
 @RequestMapping("/welcome")
 public class HelloController {
-	@Autowired
-	OrderService orderService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
