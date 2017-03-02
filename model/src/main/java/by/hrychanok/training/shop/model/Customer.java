@@ -12,6 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import by.hrychanok.training.shop.model.Order;
 
 @Entity
@@ -21,18 +28,21 @@ public class Customer extends AbstractModel{
 	private String lastName;
 	private String email;
 	private Date created;
+	@DateTimeFormat(pattern = "yy-mm-dd")
 	private Date dateBirth;
 	private Gender gender;
 	private String country;
 	private String city;
 	private String address;
 	private String zipCode;
+	private byte[] photo;
 	private List<CartContent> cartContent;
 	private List<Order> order;
 	private List<ProductComment> productComment;
 	private CustomerCredentials customerCredentials;
 
 	@MapsId
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(nullable = false, updatable = false, name = "id")
 	public CustomerCredentials getCustomerCredentials() {
@@ -88,7 +98,7 @@ public class Customer extends AbstractModel{
 	}
 
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "gender", nullable = false, unique = false)
+	@Column(name = "gender", unique = false)
 	public Gender getGender() {
 		return gender;
 	}
@@ -132,6 +142,17 @@ public class Customer extends AbstractModel{
 		this.zipCode = zipCode;
 	}
 
+	public byte[] getPhoto()
+	{
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo)
+	{
+		this.photo = photo;
+	}
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public List<Order> getOrder() {
 		return order;
@@ -141,6 +162,7 @@ public class Customer extends AbstractModel{
 		this.order = order;
 	}
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public List<ProductComment> getProductComment() {
 		return productComment;
@@ -150,6 +172,7 @@ public class Customer extends AbstractModel{
 		this.productComment = productComment;
 	}
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	public List<CartContent> getCartContent() {
 		return cartContent;

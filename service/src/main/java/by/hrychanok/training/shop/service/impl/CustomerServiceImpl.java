@@ -8,6 +8,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +30,7 @@ import by.hrychanok.training.shop.model.ProductComment;
 
 @Service
 @Transactional
-@Profilings
+//@Profilings
 public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepository, Long>
 		implements CustomerService {
 
@@ -88,6 +89,11 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 	}
 
 	@Override
+	public CustomerCredentials findByLogin(String login) {
+		return customerCredentialsRepository.findByLogin(login);
+	}
+
+	@Override
 	public Collection<? extends String> resolveRoles(Long id) {
 		CustomerCredentials customerCredentials = customerCredentialsRepository.findOne(id);
 		return Collections.singletonList(customerCredentials.getRole().name());
@@ -119,6 +125,12 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 		}
 		return repository.findAll(page).getContent();
 
+	}
+
+	@Override
+	public Page<Customer> findAll(Pageable pageable)
+	{
+		return repository.findAll(pageable);
 	}
 
 }

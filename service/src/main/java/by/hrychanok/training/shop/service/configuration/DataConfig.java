@@ -32,7 +32,7 @@ public class DataConfig {
 	private static final String PROP_HIBERNATE_CURRENT_SESSION_CONTEXT_CLASS = "current_session_context_class";
 	private static final String PROP_HIBERNATE_enable_lazy_load_no_trans = "hibernate.enable_lazy_load_no_trans";
 	private static final String PROP_HIBERNATE_EJB_NAMING_STRATEGY = "hibernate.physical_naming_strategy";
-	private static final String PROPERTY_HIBERNATE_hibernate_hbm2ddl_auto = "create";
+	private static final String PROPERTY_HIBERNATE_hibernate_hbm2ddl_auto = "update";
 
 	@Resource
 	private Environment env;
