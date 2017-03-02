@@ -1,54 +1,110 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
-<%@ taglib prefix="x" uri="http://java.sun.com/jstl/xml"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Registration Form</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Create an account</title>
+
+<link href="${contextPath}/resources/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body>
 
 <body>
-    <div align="center">
-        <form:form action="register" method="post" commandName="userForm">
-            <table border="0">
-                <tr>
-                    <td colspan="2" align="center"><h2>Spring MVC Form Demo - Registration</h2></td>
-                </tr>
-                <tr>
-                    <td>User Name:</td>
-                    <td><form:input path="username" /></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><form:password path="password" /></td>
-                </tr>
-                 <tr>
-                    <td>First Name:</td>
-                    <td><form:password path="firstname" /></td>
-                </tr>
-                 <tr>
-                    <td>Last Name:</td>
-                    <td><form:password path="lastname" /></td>
-                </tr>
-                <tr>
-                    <td>E-mail:</td>
-                    <td><form:input path="email" /></td>
-                </tr>
-                <tr>
-                    <td>Birthday (mm/dd/yyyy):</td>
-                    <td><form:input path="birthDate" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center"><input type="submit" value="Register" /></td>
-                </tr>
-            </table>
-        </form:form>
 
+	<div class="container">
+		<form:form method="POST" modelAttribute="customerRegForm"
+			class="form-signin">
+			<h2 class="form-signin-heading">Create your account</h2>
+			<spring:bind path="login">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
+					<form:input type="text" path="login" class="form-control"
+						placeholder="Login" autofocus="true"></form:input>
+					<form:errors path="login"></form:errors>
+				</div>
+			</spring:bind>
 
+			<spring:bind path="password">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
+					<form:input type="password" path="password" class="form-control"
+						placeholder="Password"></form:input>
+					<form:errors path="password"></form:errors>
+				</div>
+			</spring:bind>
+
+			<spring:bind path="confirmationPassword">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
+					<form:input type="password" path="confirmationPassword"
+						class="form-control" placeholder="Confirm your password"></form:input>
+					<form:errors path="confirmationPassword"></form:errors>
+				</div>
+			</spring:bind>
+
+			<h3 class="form-signin-heading">Additional data</h3>
+			<spring:bind path="firstName">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
+					<form:input type="text" path="firstName" class="form-control"
+						placeholder="First Name" autofocus="true"></form:input>
+					<form:errors path="firstName"></form:errors>
+				</div>
+			</spring:bind>
+
+			<spring:bind path="lastName">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
+					<form:input type="text" path="lastName" class="form-control"
+						placeholder="Last Name" autofocus="true"></form:input>
+					<form:errors path="lastName"></form:errors>
+				</div>
+			</spring:bind>
+
+			<spring:bind path="email">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
+					<form:input type="text" path="email" class="form-control"
+						placeholder="eMail" autofocus="true"></form:input>
+					<form:errors path="email"></form:errors>
+				</div>
+			</spring:bind>
+
+			<spring:bind path="city">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
+					<form:input type="text" path="city" class="form-control"
+						placeholder="city" autofocus="true"></form:input>
+					<form:errors path="city"></form:errors>
+				</div>
+			</spring:bind>
+
+			<spring:bind path="address">
+				<div class="form-group ${status.error ? 'has-error' : ''}">
+					<form:input type="text" path="address" class="form-control"
+						placeholder="address" autofocus="true"></form:input>
+					<form:errors path="address"></form:errors>
+				</div>
+			</spring:bind>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+		</form:form>
+
+	</div>
+	<!-- /container -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
