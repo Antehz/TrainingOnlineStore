@@ -19,9 +19,9 @@ public class BasicServiceImpl<T, REPOSITORY extends JpaRepository<T, ID>, ID ext
 
 	@Override
 	@Transactional
-	public T save(T entity) {
+	public <S extends T> S save(S entity) {
 		logger.debug("Save entity " + entity);
-		return (T) repository.save(entity);
+		return  repository.save(entity);
 	}
 
 	@Override

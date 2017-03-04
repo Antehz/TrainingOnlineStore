@@ -27,9 +27,6 @@ import by.hrychanok.training.shop.service.exeption.ServiceException;
 import by.hrychanok.training.shop.model.Order;
 import by.hrychanok.training.shop.model.ProductComment;
 
-@Service
-@Transactional
-@Profilings
 public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepository, Long>
 		implements CustomerService {
 

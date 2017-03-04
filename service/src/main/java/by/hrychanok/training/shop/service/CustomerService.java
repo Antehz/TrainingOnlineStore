@@ -2,6 +2,8 @@ package by.hrychanok.training.shop.service;
 
 import java.util.Collection;
 import java.util.List;
+
+import by.hrychanok.training.shop.model.Order;
 import org.springframework.data.domain.Pageable;
 import by.hrychanok.training.shop.model.Customer;
 import by.hrychanok.training.shop.model.CustomerCredentials;
