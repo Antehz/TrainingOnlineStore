@@ -26,14 +26,24 @@ public class CartServiceImpl extends BasicServiceImpl<CartContent, CartContentRe
 	ProductService productService;
 	@Autowired
 	CustomerService customerService;
+	@Autowired
+	CartServiceAdapter cartServiceAdapter;
+	boolean multi = true;
 
 	@Override
 	public void clearCustomerCartContent(Long id) {
-		repository.clearCustomerCartContent(id);
+		if (multi){
+			cartServiceAdapter.clearCustomerCartContent(id);
+		}else repository.clearCustomerCartContent(id);
 		LOGGER.info("Cart by customer {} has been cleared", id);
 	}
 	@Override
 	public Boolean addProductToCart(Long productId, Long customerId, Integer amount) {
+
+		if (multi){
+			cartServiceAdapter.addProductToCart(productId,customerId,amount);
+			return true;
+		}
 
 		List<CartContent> contentCartCustomer = getCustomerCartContent(customerId);
 
