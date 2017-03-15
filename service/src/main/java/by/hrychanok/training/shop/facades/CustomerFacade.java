@@ -32,4 +32,9 @@ public interface CustomerFacade
 	Page<Customer> findAll(Pageable pageable);
 
 	public Long count(Filter filter);
+
+	List<Customer> findAll();
+
+	Customer findById(Long id);
+
 }

@@ -80,6 +80,18 @@ public class CustomerFacadeImpl implements CustomerFacade
 		return customerService.count(filter);
 	}
 
+	@Override
+	public List<Customer> findAll()
+	{
+		return customerService.findAll();
+	}
+
+	@Override
+	public Customer findById(Long id)
+	{
+		return customerService.findOne(id);
+	}
+
 
 	private Customer convertToCustomerModel(CustomerDTO customerDTO)
 	{

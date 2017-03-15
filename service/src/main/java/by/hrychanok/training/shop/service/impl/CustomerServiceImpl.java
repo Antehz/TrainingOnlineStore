@@ -89,6 +89,12 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 	}
 
 	@Override
+	public Customer findById(Long id)
+	{
+		return repository.findOne(id);
+	}
+
+	@Override
 	public Collection<? extends String> resolveRoles(Long id) {
 		CustomerCredentials customerCredentials = customerCredentialsRepository.findOne(id);
 		return Collections.singletonList(customerCredentials.getRole().name());

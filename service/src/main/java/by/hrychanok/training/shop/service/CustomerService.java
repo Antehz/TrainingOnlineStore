@@ -29,4 +29,6 @@ public interface CustomerService extends BasicService<Customer, Long> {
 	Page<Customer> findAll(Pageable pageable);
 
 	public Long count(Filter filter);
+
+	Customer findById(Long id);
 }
