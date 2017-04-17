@@ -48,7 +48,7 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model uiModel) {
-        logger.info("Listing customers");
+        logger.info("Listdsding customers");
         List<Customer> customers = customerService.findAll();
         uiModel.addAttribute("customers", customers);
         logger.info("No. of customers: " + customers.size());
