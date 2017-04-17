@@ -1,0 +1,47 @@
+
+description = ''
+
+sourceSets {
+    test
+}
+
+task intTest (type : JavaExec, dependsOn : classes){
+ main = 'com.epam.test.integration.IntegrationTest'
+    classpath sourceSets.test.runtimeClasspath
+}
+
+jar.dependsOn.add('intTest')
+
+test {
+    testLogging.showStandardStreams = true
+}
+
+dependencies {
+  compile project(':repository')
+  compile project(':model')
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version:'1.10.1.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-commons-core', version:'1.4.1.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version:'1.8.0.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version:'4.2.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version:'4.2.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version:'4.2.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version:'4.3.0.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jdbc', version:'4.2.5.RELEASE'
+    compile group: 'org.postgresql', name: 'postgresql', version:'9.4.1208'
+    compile group: 'org.springframework', name: 'spring-test', version:'4.2.5.RELEASE'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version:'5.1.0.Final'
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+    compile group: 'junit', name: 'junit', version:'4.12'
+    compile group: 'javax.mail', name: 'mail', version:'1.4.7'
+    compile group: 'org.springframework', name: 'spring-context-support', version:'4.2.5.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-web', version:'4.2.2.RELEASE'
+    compile(group: 'org.springframework.security', name: 'spring-security-core', version:'4.2.2.RELEASE') {
+exclude(module: 'spring-aop')
+    }
+    compile(group: 'org.springframework.security', name: 'spring-security-config', version:'4.2.2.RELEASE') {
+exclude(module: 'spring-aop')
+    }
+    compile(group: 'org.springframework.security', name: 'spring-security-taglibs', version:'4.2.2.RELEASE') {
+exclude(module: 'spring-aop')
+    }
+}

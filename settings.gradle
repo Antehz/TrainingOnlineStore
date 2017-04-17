@@ -1,0 +1,10 @@
+rootProject.name = 'TrainingOnlineStore'
+include ':model'
+include ':service'
+include ':repository'
+include ':storefront'
+
+project(':model').projectDir = "$rootDir/model" as File
+project(':service').projectDir = "$rootDir/service" as File
+project(':repository').projectDir = "$rootDir/repository" as File
+project(':storefront').projectDir = "$rootDir/storefront" as File
