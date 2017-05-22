@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -32,6 +33,10 @@ public class DataConfig {
 	private static final String PROP_HIBERNATE_CURRENT_SESSION_CONTEXT_CLASS = "current_session_context_class";
 	private static final String PROP_HIBERNATE_enable_lazy_load_no_trans = "hibernate.enable_lazy_load_no_trans";
 	private static final String PROP_HIBERNATE_EJB_NAMING_STRATEGY = "hibernate.physical_naming_strategy";
+	private static final String PROP_HIBERNATE_FORMAT_SQL = "hibernate.format_sql";
+	private static final String PROP_HIBERNATE_USE_HIBERNATE_COMMENTS = "hibernate.use_sql_comments";
+
+
 	@Resource
 	private Environment env;
 
@@ -51,7 +56,8 @@ public class DataConfig {
 		entityManagerFactoryBean.setDataSource(dataSource());
 		entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 		entityManagerFactoryBean.setPackagesToScan(env.getRequiredProperty(PROP_ENTITYMANAGER_PACKAGES_TO_SCAN));
-
+		final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+		entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
 		entityManagerFactoryBean.setJpaProperties(getHibernateProperties());
 
 		return entityManagerFactoryBean;
@@ -74,6 +80,9 @@ public class DataConfig {
 		properties.put(PROP_HIBERNATE_enable_lazy_load_no_trans,
 				env.getRequiredProperty(PROP_HIBERNATE_enable_lazy_load_no_trans));
 		properties.put(PROP_HIBERNATE_EJB_NAMING_STRATEGY, env.getRequiredProperty(PROP_HIBERNATE_EJB_NAMING_STRATEGY));
+		properties.put(PROP_HIBERNATE_FORMAT_SQL, env.getRequiredProperty(PROP_HIBERNATE_FORMAT_SQL));
+		properties.put(PROP_HIBERNATE_USE_HIBERNATE_COMMENTS, env.getRequiredProperty(PROP_HIBERNATE_USE_HIBERNATE_COMMENTS));
+
 		return properties;
 	}
 

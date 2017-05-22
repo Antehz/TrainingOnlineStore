@@ -2,6 +2,7 @@ package by.hrychanok.training.shop.model;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Access;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,8 +14,11 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import by.hrychanok.training.shop.model.Order;
+import org.hibernate.annotations.NamedQuery;
 
 @Entity
+@NamedQuery(name = "Customer.findOneByCity",
+	query = "select u from Customer u where u.id = ?1 and city like ?2" )
 public class Customer extends AbstractModel{
 
 	private String firstName;

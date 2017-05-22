@@ -62,7 +62,10 @@ public class TestDataBaseConfig {
 		properties.put("hibernate.show_sql", PROPERTY_NAME_HIBERNATE_SHOW_SQL);
 		properties.put("hibernate.enable_lazy_load_no_trans", PROP_HIBERNATE_enable_lazy_load_no_trans);
 		properties.put("hibernate.hbm2ddl.auto", PROPERTY_HIBERNATE_hibernate_hbm2ddl_auto);
+
 		properties.put("hibernate.physical_naming_strategy", "by.hrychanok.training.shop.model.util.PhysicalNamingStrategyImpl");
+		properties.put("hibernate.use_sql_comments", true);
+
 		return properties;
 	}
 

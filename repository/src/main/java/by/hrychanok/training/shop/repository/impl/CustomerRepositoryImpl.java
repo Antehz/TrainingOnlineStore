@@ -83,6 +83,8 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
 		return allitems;
 	}
 
+
+
 	@Override
 	public Long count(CustomerFilter filter) {
 		        EntityManager em = getEntityManager();
@@ -103,6 +105,7 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
 		        // set execute query
 		        return q.getSingleResult();
 		    }
+
 	 private void handleFilterParameters(CustomerFilter filter, CriteriaBuilder cb, CriteriaQuery<?> cq, Root<Customer> from) {
 	        if (filter.getUserName() != null) {
 	            Predicate fNameEqualCondition = cb.equal(from.get(Customer_.firstName), filter.getUserName());

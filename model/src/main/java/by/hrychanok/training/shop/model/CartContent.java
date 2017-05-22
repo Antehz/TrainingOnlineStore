@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -21,6 +22,7 @@ public class CartContent extends AbstractModel {
 	private Integer amount;
 	private Date dateAdd;
 	private Integer price;
+	private AuditInfo auditInfo;
 
 	@ManyToOne(targetEntity = Customer.class, fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "customer_id")
@@ -66,6 +68,15 @@ public class CartContent extends AbstractModel {
 
 	public void setPrice(Integer price) {
 		this.price = price;
+	}
+
+	@Embedded
+	public AuditInfo getAuditInfo() {
+		return auditInfo;
+	}
+
+	public void setAuditInfo(AuditInfo auditInfo) {
+		this.auditInfo = auditInfo;
 	}
 
 	@Override

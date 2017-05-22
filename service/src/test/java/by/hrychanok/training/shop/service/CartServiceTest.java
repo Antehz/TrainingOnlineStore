@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.annotation.Resource;
 
+import by.hrychanok.training.shop.model.AuditInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +101,10 @@ public class CartServiceTest {
 		cartContent.setAmount(0);
 		cartContent.setDateAdd(new Date());
 		cartContent.setPrice(0);
+		AuditInfo auditInfo = new AuditInfo();
+		auditInfo.setUpdateDate(new Date());
+		auditInfo.setUpdateUserId(1);
+		cartContent.setAuditInfo(auditInfo);
 		cartContent = cartService.save(cartContent);
 		return cartContent;
 	}

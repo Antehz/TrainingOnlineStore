@@ -24,7 +24,9 @@ public interface CustomerService extends BasicService<Customer, Long> {
 
 	Boolean emailIsAvailable(String email);
 
-	public List<Customer> findAll(Filter filter, Pageable page);
+	List<Customer> findAll(Filter filter, Pageable page);
 
-	public Long count(Filter filter);
+	Long count(Filter filter);
+
+	Customer findByCity(Long id, String city);
 }

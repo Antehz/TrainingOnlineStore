@@ -33,9 +33,7 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 
 	@Autowired
 	CustomerCredentialsRepository customerCredentialsRepository;
-    
-	@Autowired
-	MailService mail;
+
     @InitLogger
 	Logger logger; 
     
@@ -61,7 +59,6 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 			customer = repository.save(customer);
 			if (customer != null) {
 				logger.info("Customer succesfully registred : {}", customer);
-				mail.sendRegistrationNotificationMail(customer);
 			}
 		} else {
 			throw new ServiceException(String.format("Customer with login: %s, or EMail: %s already exist!",
@@ -137,5 +134,10 @@ public class CustomerServiceImpl extends BasicServiceImpl<Customer, CustomerRepo
 		}
 		return repository.count();
 
+	}
+
+	@Override
+	public Customer findByCity(Long id, String city) {
+		return repository.findOneByCity(id, city);
 	}
 }
